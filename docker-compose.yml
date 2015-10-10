@@ -17,10 +17,10 @@ dkobo:
   extends:
     file: common.yml
     service: dkobo
-  links:
-    - psql
-    - rabbit
-    - kobocat
+#  links:
+#    - psql
+#    - rabbit
+#    - kobocat
   volumes:
     - "../bigvol:/mnt"
 
@@ -28,9 +28,9 @@ kobocat:
   extends:
     file: common.yml
     service: kobocat
-  links:
-    - psql
-    - mongo
-    - rabbit
+#  links:
+#    - psql
+#    - mongo
+#    - rabbit
   volumes:
     - "../bigvol:/mnt"
