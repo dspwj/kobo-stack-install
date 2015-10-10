@@ -1,0 +1,1 @@
+TERM=${KOBO_TERM}
