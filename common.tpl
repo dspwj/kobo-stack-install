@@ -79,8 +79,8 @@ web:
     - ./env_kobos
   #  - ./env_secrets
   ports:
-    - "${KOBO_WB_SERVER_IP}:80:80"
-    - "${KOBO_WB_SERVER_IP}:443:443"
+    - "${KOBO_WB_SERVER_IP}:${NGINX_HTTP_PORT}:80"
+    - "${KOBO_WB_SERVER_IP}:${NGINX_HTTPS_PORT}:443"
   volumes:
     - "${VOL_WB}:/srv/www:ro"
   extra_hosts:
@@ -90,4 +90,4 @@ web:
     - KOBO_NGINX_BASE_DIR=/etc/nginx
     - KOBO_NGINX_LOG_DIR=/var/log/nginx
     # for BM staging :)
-    #- VHOST="${KOBO_PREFIX}kc.${KOBO_DOMAIN} ${KOBO_PREFIX}kobo.${KOBO_DOMAIN}"
+    #- VIRTUAL_HOST=${KOBO_PREFIX}kc.${KOBO_DOMAIN},${KOBO_PREFIX}kobo.${KOBO_DOMAIN}
