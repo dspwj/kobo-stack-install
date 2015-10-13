@@ -35,20 +35,6 @@ mongo:
   volumes:
     - "${VOL_DB}/mongo:/srv/db"
 
-dkobo:
-  image: teodorescuserban/kobo-dkobo:latest # still WIP
-  hostname: dkobo
-  env_file:
-    - ./env_common
-    - ./env_sql
-    - ./env_kobos
-    - ./env_dkobo
-  ports:
-    - "${KOBO_WB_SERVER_IP}:${KOBOFORM_SERVER_PORT}:8000"
-  extra_hosts:
-    - "db: ${KOBO_DB_SERVER_IP}"
-  volumes:
-    - "${VOL_WB}/koboform:/srv/static"
 
 kobocat:
   image: teodorescuserban/kobo-kobocat:latest # still WIP
@@ -67,6 +53,23 @@ kobocat:
     - "rabbit: ${KOBO_DB_SERVER_IP}"
   volumes:
     - "${VOL_WB}/kobocat:/srv/static"
+
+dkobo:
+  image: teodorescuserban/kobo-dkobo:latest # still WIP
+  hostname: dkobo
+  env_file:
+    - ./env_common
+    - ./env_sql
+    - ./env_kobos
+    - ./env_dkobo
+  ports:
+    - "${KOBO_WB_SERVER_IP}:${KOBOFORM_SERVER_PORT}:8000"
+  extra_hosts:
+    - "db: ${KOBO_DB_SERVER_IP}"
+    - "${KOBO_PREFIX}kobo.${KOBO_DOMAIN}: ${KOBO_WB_SERVER_IP}"
+    - "${KOBO_PREFIX}kc.${KOBO_DOMAIN}: ${KOBO_WB_SERVER_IP}"
+  volumes:
+    - "${VOL_WB}/koboform:/srv/static"
 
 web:
   image: teodorescuserban/kobo-nginx:latest # still WIP
