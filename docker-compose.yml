@@ -1,3 +1,5 @@
+# copyleft 2015 teodorescu.serban@gmail.com
+
 rabbit:
   extends:
     file: common.yml
@@ -17,20 +19,13 @@ dkobo:
   extends:
     file: common.yml
     service: dkobo
-#  links:
-#    - psql
-#    - rabbit
-#    - kobocat
-  volumes:
-    - "../bigvol:/mnt"
 
 kobocat:
   extends:
     file: common.yml
     service: kobocat
-#  links:
-#    - psql
-#    - mongo
-#    - rabbit
-  volumes:
-    - "../bigvol:/mnt"
+
+web:
+  extends:
+    file: common.yml
+    service: web

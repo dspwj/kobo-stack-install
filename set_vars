@@ -14,12 +14,18 @@ $e BASE_DIR=/srv
 $e SRC_DIR=/srv/src
 $e PYTHONPATH=${SRC_DIR}
 
+$e VOL_DB=./.vols
+$e VOL_WB=./.vols
+$e KOBO_PREFIX=
+$e KOBO_DOMAIN=humanitarianresponse.info
 $e KOBO_SERVER_IP=172.17.42.1
 # -----------------------------------------
 $e KOBO_DB_SERVER_IP=${KOBO_SERVER_IP}
 $e KOBO_WB_SERVER_IP=${KOBO_SERVER_IP}
 $e ENKETO_SERVER_IP=${KOBO_SERVER_IP}
 # -----------------------------------------
+$e KOBOCAT_SERVER_ADDR=${KOBO_WB_SERVER_IP}
+$e KOBOFORM_SERVER_ADDR=${KOBO_WB_SERVER_IP}
 $e KOBOFORM_SERVER_PORT=8000
 $e KOBOCAT_SERVER_PORT=8001
 $e ENKETO_EXPRESS_SERVER_PORT=8005
@@ -54,8 +60,8 @@ $e KOBOFORM_PATH=${SRC_DIR}/koboform
 
 # -----------------------------------------
 
-DEFAULT_KOBO_USER=kobo
-DEFAULT_KOBO_PASS=kobo
+$e DEFAULT_KOBO_USER=kobo
+$e DEFAULT_KOBO_PASS=kobo
 
 # Enketo-Express-related configurations.
 $e ENKETO_EXPRESS_REPO_DIR=${SRC_DIR}/enketo-express
@@ -74,17 +80,20 @@ $e ENKETO_PROTOCOL=http
 $e ENKETO_API_TOKEN=enketorules
 
 # django settings specific details
-$e KOBOCAT_DJANGO_DEBUG=False
+$e KOBOCAT_DJANGO_DEBUG=True
 $e KOBOCAT_DJANGO_LIVE_RELOAD=False
 $e KOBOCAT_DJANGO_SITE_ID=1
 $e KOBOCAT_DJANGO_SECRET_KEY=sooooooooooooosecreeeeeeeeeeeeeet
 $e KOBOCAT_DJANGO_SETTINGS_MODULE="kobocat_settings"
 
-$e KOBOFORM_DJANGO_DEBUG=False
+$e KOBOFORM_DJANGO_DEBUG=True
 $e KOBOFORM_DJANGO_LIVE_RELOAD=False
 $e KOBOFORM_DJANGO_SITE_ID=1
 $e KOBOFORM_DJANGO_SECRET_KEY=sooooooooooooosecreeeeeeeeeeeeeet
 $e KOBOFORM_DJANGO_SETTINGS_MODULE="dkobo.settings"
 
 # localhost is not a valid CSRF_COOKIE_DOMAIN in chrome
-$e CSRF_COOKIE_DOMAIN=".local.kobotoolbox.org"
+#$e CSRF_COOKIE_DOMAIN=".local.kobotoolbox.org"
+$e CSRF_COOKIE_DOMAIN=.${KOBO_DOMAIN}
+
+

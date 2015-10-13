@@ -1,6 +1,7 @@
+# copyleft 2015 teodorescu.serban@gmail.com
+
 rabbit:
   image: teodorescuserban/kobo-rabbit:latest
-  # build: ./rabbit
   hostname: rabbit
   env_file:
     - ./env_common
@@ -13,19 +14,17 @@ rabbit:
 
 psql:
   image: teodorescuserban/kobo-psql:latest
-  # build: ./psql
   hostname: psql
   env_file:
     - ./env_common
     - ./env_sql
   ports:
     - "${KOBO_DB_SERVER_IP}:${PSQL_PORT}:5432"
-#  volumes:
-#    - ./vols/db:/srv/db"
+  volumes:
+    - "${VOL_DB}/db:/srv/db"
 
 mongo:
   image: teodorescuserban/kobo-mongo:latest
-  # build: ./mongo
   hostname: mongo
   env_file:
     - ./env_common
@@ -33,12 +32,11 @@ mongo:
     - MONGO_DATA=/srv/db
   ports:
     - "${KOBO_DB_SERVER_IP}:${MONGO_PORT}:27017"
-#  volumes:
-#    - ./vols/mongo:/srv/db"
+  volumes:
+    - "${VOL_DB}/mongo:/srv/db"
 
 dkobo:
-#  # image: teodorescuserban/kobo-dkobo:latest # still WIP
-  build: ./dkobo
+  image: teodorescuserban/kobo-dkobo:latest # still WIP
   hostname: dkobo
   env_file:
     - ./env_common
@@ -47,13 +45,14 @@ dkobo:
     - ./env_dkobo
   ports:
     - "${KOBO_WB_SERVER_IP}:${KOBOFORM_SERVER_PORT}:8000"
-#    - "${KOBO_WB_SERVER_IP}:${KOBOFORM_SERVER_PORT}:80"
   extra_hosts:
     - "db: ${KOBO_DB_SERVER_IP}"
+  volumes:
+    - "${VOL_WB}/koboform:/srv/static"
 
 kobocat:
-  # image: teodorescuserban/kobo-dkobo:latest # still WIP
-  build: ./kobocat
+  image: teodorescuserban/kobo-kobocat:latest # still WIP
+  #build: ./kobocat
   hostname: kobocat
   env_file:
     - ./env_common
@@ -62,8 +61,30 @@ kobocat:
     - ./env_kobocat
   ports:
     - "${KOBO_WB_SERVER_IP}:${KOBOCAT_SERVER_PORT}:8000"
-#    - "${KOBO_WB_SERVER_IP}:${KOBOCAT_SERVER_PORT}:80"
   extra_hosts:
     - "db: ${KOBO_DB_SERVER_IP}"
     - "mongo: ${KOBO_DB_SERVER_IP}"
     - "rabbit: ${KOBO_DB_SERVER_IP}"
+  volumes:
+    - "${VOL_WB}/kobocat:/srv/static"
+
+web:
+  image: teodorescuserban/kobo-nginx:latest # still WIP
+  hostname: nginx
+  env_file:
+    - ./env_common
+    - ./env_kobos
+  #  - ./env_secrets
+  ports:
+    - "${KOBO_WB_SERVER_IP}:80:80"
+    - "${KOBO_WB_SERVER_IP}:443:443"
+  volumes:
+    - "${VOL_WB}:/srv/www:ro"
+  extra_hosts:
+    - "${KOBO_PREFIX}kobo.${KOBO_DOMAIN}: ${KOBO_WB_SERVER_IP}"
+    - "${KOBO_PREFIX}kc.${KOBO_DOMAIN}: ${KOBO_WB_SERVER_IP}"
+  environment:
+    - KOBO_NGINX_BASE_DIR=/etc/nginx
+    - KOBO_NGINX_LOG_DIR=/var/log/nginx
+    # for BM staging :)
+    #- VHOST="${KOBO_PREFIX}kc.${KOBO_DOMAIN} ${KOBO_PREFIX}kobo.${KOBO_DOMAIN}"
