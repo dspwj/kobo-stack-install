@@ -89,5 +89,6 @@ web:
   environment:
     - KOBO_NGINX_BASE_DIR=/etc/nginx
     - KOBO_NGINX_LOG_DIR=/var/log/nginx
+    - KOBO_SSL_KEY=${KOBO_SSL_KEY}
     # for BM staging :)
     #- VIRTUAL_HOST=${KOBO_PREFIX}kc.${KOBO_DOMAIN},${KOBO_PREFIX}kobo.${KOBO_DOMAIN}
