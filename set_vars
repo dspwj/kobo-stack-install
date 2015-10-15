@@ -128,3 +128,8 @@ $e KOBOFORM_DJANGO_SETTINGS_MODULE="dkobo.settings"
 $e CSRF_COOKIE_DOMAIN=.${KOBO_DOMAIN}
 
 $e KOBO_SSL_KEY=
+
+
+# Email related settings:
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = '/tmp/app-messages' # change this to a proper location
