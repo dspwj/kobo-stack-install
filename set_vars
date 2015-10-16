@@ -21,6 +21,10 @@ $e VOL_WB=./.vols
 $e KOBO_PREFIX=
 $e KOBO_DOMAIN=humanitarianresponse.info
 $e KOBO_SERVER_IP=172.17.42.1
+
+#######################################################
+
+
 # -----------------------------------------
 $e KOBO_DB_SERVER_IP=${KOBO_SERVER_IP}
 $e KOBO_WB_SERVER_IP=${KOBO_SERVER_IP}
@@ -102,7 +106,9 @@ $e COMPRESS_OFFLINE=True
 
 #export ENKETO_API_URL_PARTIAL="/api_v1"
 #export ENKETO_PREVIEW_URL_PARTIAL="/webform/preview"
+# this is the protocol enketo will try to use to reach our server!
 #export ENKETO_PROTOCOL="https"
+
 # or
 $e ENKETO_API_ROOT=/api/v2
 $e ENKETO_OFFLINE_SURVEYS=True

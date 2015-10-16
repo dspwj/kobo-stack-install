@@ -55,7 +55,8 @@ kobocat:
     - "${VOL_WB}/kobocat:/srv/static"
 
 dkobo:
-  image: teodorescuserban/kobo-dkobo:latest # still WIP
+  #image: teodorescuserban/kobo-dkobo:latest # still WIP
+  build: ../kobo-dockers/dkobo
   hostname: dkobo
   env_file:
     - ./env_common
