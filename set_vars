@@ -124,7 +124,7 @@ $e KOBOCAT_DJANGO_DEBUG=True
 $e KOBOCAT_DJANGO_LIVE_RELOAD=False
 $e KOBOCAT_DJANGO_SITE_ID=1
 $e KOBOCAT_DJANGO_SECRET_KEY=sooooooooooooosecreeeeeeeeeeeeeet
-$e KOBOCAT_DJANGO_SETTINGS_MODULE="onadata.settings.kobocat_settings"
+$e KOBOCAT_DJANGO_SETTINGS_MODULE="onadata.settings.kc_environ"
 
 $e KOBOFORM_DJANGO_DEBUG=True
 $e KOBOFORM_DJANGO_LIVE_RELOAD=False
