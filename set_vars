@@ -34,7 +34,6 @@ $e KOBOCAT_SERVER_ADDR=${KOBO_WB_SERVER_IP}
 $e KOBOFORM_SERVER_ADDR=${KOBO_WB_SERVER_IP}
 $e KOBOFORM_SERVER_PORT=8000
 $e KOBOCAT_SERVER_PORT=8001
-$e ENKETO_EXPRESS_SERVER_PORT=8005
 # -----------------------------------------
 
 $e PSQL_ADMIN=postgres
@@ -88,6 +87,7 @@ $e DEFAULT_KOBO_PASS=kobo
 # Enketo-Express-related configurations.
 $e ENKETO_EXPRESS_REPO_DIR=${SRC_DIR}/enketo-express
 $e ENKETO_EXPRESS_UPDATE_REPO=false
+$e ENKETO_EXPRESS_SERVER_PORT=8005
 
 # For KoBoForm.
 $e ENKETO_SERVER="https://enketo.kobotoolbox.org"
@@ -104,17 +104,20 @@ $e COMPRESS_OFFLINE=True
 
 # For KoBoCat.
 
-#export ENKETO_API_URL_PARTIAL="/api_v1"
-#export ENKETO_PREVIEW_URL_PARTIAL="/webform/preview"
+export ENKETO_API_URL_PARTIAL="/api_v1"
+export ENKETO_PREVIEW_URL_PARTIAL="/webform/preview"
 # this is the protocol enketo will try to use to reach our server!
-#export ENKETO_PROTOCOL="https"
+# use http on bm staging, https otherwise
+export ENKETO_PROTOCOL="http"
 
-# or
-$e ENKETO_API_ROOT=/api/v2
-$e ENKETO_OFFLINE_SURVEYS=True
-$e ENKETO_API_ENDPOINT_PREVIEW=/preview
-$e ENKETO_PROTOCOL=http
-$e ENKETO_API_TOKEN=enketorules
+# old one
+# $e ENKETO_API_ROOT=/api/v1
+# new one (not in prod)
+#$e ENKETO_API_ROOT=/api/v2
+#$e ENKETO_OFFLINE_SURVEYS=True
+#$e ENKETO_API_ENDPOINT_PREVIEW=/preview
+#$e ENKETO_PROTOCOL=http
+#$e ENKETO_API_TOKEN=enketorules
 
 # django settings specific details
 $e KOBOCAT_DJANGO_DEBUG=True
@@ -136,6 +139,6 @@ $e CSRF_COOKIE_DOMAIN=.${KOBO_DOMAIN}
 $e KOBO_SSL_KEY=
 
 
-# Email related settings:
+# Email related settings: comment them out on prod envs
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = '/tmp/app-messages' # change this to a proper location
