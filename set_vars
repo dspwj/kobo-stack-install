@@ -60,6 +60,7 @@ $e KOBOFORM_PREVIEW_SERVER=http://${KOBO_PREFIX}kobo.${KOBO_DOMAIN}
 $e KOBOCAT_URL=http://${KOBO_PREFIX}kc.${KOBO_DOMAIN}
 # internal form sending koboform -> kobocat
 $e KOBOCAT_INTERNAL_URL=http://${KOBO_PREFIX}kc.${KOBO_DOMAIN}
+$e KOBOCAT_MEDIA_URL=http://${KOBO_PREFIX}kc.${KOBO_DOMAIN}/media/
 #$e KOBOFORM_URL=http://${KOBO_WB_SERVER_IP}:${KOBOFORM_SERVER_PORT}
 #$e KOBOFORM_PREVIEW_SERVER=http://${KOBO_WB_SERVER_IP}:${KOBOFORM_SERVER_PORT}
 #$e KOBOCAT_URL=http://${KOBO_WB_SERVER_IP}:${KOBOCAT_SERVER_PORT}
@@ -142,3 +143,4 @@ $e KOBO_SSL_KEY=
 # Email related settings: comment them out on prod envs
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = '/tmp/app-messages' # change this to a proper location
+
