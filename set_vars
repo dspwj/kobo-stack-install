@@ -54,7 +54,6 @@ $e NGINX_HTTPS_PORT=443
 
 $e ENKETO_SERVER_ADDR="https://enketo.kobotoolbox.org"
 ENKETO_VERSION=legacy  # [legacy | express]
-$e PSQL_ADMIN=postgres
 $e KOBO_PSQL_DB_NAME=kobotoolbox
 $e KOBO_PSQL_DB_USER=kobo
 $e KOBO_PSQL_DB_PASS=kobo
@@ -79,9 +78,9 @@ if [ $ENKETO_VERSION == 'express' ]; then
     $e ENKETO_OFFLINE_SURVEYS='True'
     $e ENKETO_API_ENDPOINT_PREVIEW='/preview'
 else
-	$e ENKETO_API_ROOT='/api_v1'
-	$e ENKETO_OFFLINE_SURVEYS='False'
-	$e ENKETO_API_ENDPOINT_PREVIEW='/webform/preview'
+    $e ENKETO_API_ROOT='/api_v1'
+    $e ENKETO_OFFLINE_SURVEYS='False'
+    $e ENKETO_API_ENDPOINT_PREVIEW='/webform/preview'
 fi
 # Prepended settings.
 $e KOBOCAT_SERVER_PORT=8001
