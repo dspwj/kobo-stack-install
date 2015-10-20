@@ -1,7 +1,5 @@
 # copyleft 2015 teodorescu.serban@gmail.com
 
-PATH=$PATH:./node_modules/.bin  # FIXME: Gets the host's `PATH` and augments it.
-
 KOBOFORM_PREVIEW_SERVER=${KOBOFORM_PREVIEW_SERVER}
 KOBOCAT_URL=${KOBOCAT_URL}
 KOBOCAT_INTERNAL_URL=${KOBOCAT_INTERNAL_URL}
