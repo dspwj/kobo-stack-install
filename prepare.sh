@@ -26,6 +26,7 @@ source set_vars
 envsubst < common.tpl > common.yml
 for f in $(ls env_*.tpl | sed -e 's/\.tpl$//'); do
     envsubst < $f.tpl > $f
+    sed -i 's/%/$/' $f
 done
 echo "Done. Inspect it. If you see something not quite right, re run this script."
 
