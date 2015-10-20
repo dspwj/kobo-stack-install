@@ -9,8 +9,8 @@ rabbit:
     - RABBITMQ_LOGS=-
     - RABBITMQ_SASL_LOGS=-
   ports:
-    - "${KOBO_DB_SERVER_IP}:${RABBIT_PORT}:5672"
-#    - "${KOBO_DB_SERVER_IP}:${RABBIT_MGMT_PORT}:15672"
+    - "${RABBIT_HOST}:${RABBIT_PORT}:5672"
+#    - "${RABBIT_HOST}:${RABBIT_MGMT_PORT}:15672"
 
 psql:
   image: teodorescuserban/kobo-psql:latest
@@ -19,7 +19,7 @@ psql:
     - ./env_common
     - ./env_sql
   ports:
-    - "${KOBO_DB_SERVER_IP}:${PSQL_PORT}:5432"
+    - "${PSQL_HOST}:${PSQL_PORT}:5432"
   volumes:
     - "${VOL_DB}/db:/srv/db"
 
@@ -31,7 +31,7 @@ mongo:
   environment:
     - MONGO_DATA=/srv/db
   ports:
-    - "${KOBO_DB_SERVER_IP}:${MONGO_PORT}:27017"
+    - "${MONGO_HOST}:${MONGO_PORT}:27017"
   volumes:
     - "${VOL_DB}/mongo:/srv/db"
 
@@ -46,11 +46,11 @@ kobocat:
     - ./env_kobos
     - ./env_kobocat
   ports:
-    - "${KOBO_WB_SERVER_IP}:${KOBOCAT_SERVER_PORT}:8000"
+    - "${KOBOCAT_SERVER_ADDR}:${KOBOCAT_SERVER_PORT}:8000"
   extra_hosts:
-    - "db: ${KOBO_DB_SERVER_IP}"
-    - "mongo: ${KOBO_DB_SERVER_IP}"
-    - "rabbit: ${KOBO_DB_SERVER_IP}"
+    - "db: ${PSQL_HOST}"
+    - "mongo: ${MONGO_HOST}"
+    - "rabbit: ${RABBIT_HOST}"
   volumes:
     - "${VOL_WB}/kobocat:/srv/static"
 
@@ -64,11 +64,11 @@ dkobo:
     - ./env_kobos
     - ./env_dkobo
   ports:
-    - "${KOBO_WB_SERVER_IP}:${KOBOFORM_SERVER_PORT}:8000"
+    - "${KOBOCAT_SERVER_ADDR}:${KOBOFORM_SERVER_PORT}:8000"
   extra_hosts:
-    - "db: ${KOBO_DB_SERVER_IP}"
-    - "${KOBO_PREFIX}kobo.${KOBO_DOMAIN}: ${KOBO_WB_SERVER_IP}"
-    - "${KOBO_PREFIX}kc.${KOBO_DOMAIN}: ${KOBO_WB_SERVER_IP}"
+    - "db: ${PSQL_HOST}"
+    - "${KOBOFORM_PUBLIC_ADDR}: ${KOBO_WB_SERVER_IP}"
+    - "${KOBOCAT_PUBLIC_ADDR}: ${KOBO_WB_SERVER_IP}"
   volumes:
     - "${VOL_WB}/koboform:/srv/static"
 
@@ -85,11 +85,11 @@ web:
   volumes:
     - "${VOL_WB}:/srv/www:ro"
   extra_hosts:
-    - "${KOBO_PREFIX}kobo.${KOBO_DOMAIN}: ${KOBO_WB_SERVER_IP}"
-    - "${KOBO_PREFIX}kc.${KOBO_DOMAIN}: ${KOBO_WB_SERVER_IP}"
+    - "${KOBOFORM_PUBLIC_ADDR}: ${KOBO_WB_SERVER_IP}"
+    - "${KOBOCAT_PUBLIC_ADDR}: ${KOBO_WB_SERVER_IP}"
   environment:
     - KOBO_NGINX_BASE_DIR=/etc/nginx
     - KOBO_NGINX_LOG_DIR=/var/log/nginx
     - KOBO_SSL_KEY=${KOBO_SSL_KEY}
     # for BM staging :)
-    #- VIRTUAL_HOST=${KOBO_PREFIX}kc.${KOBO_DOMAIN},${KOBO_PREFIX}kobo.${KOBO_DOMAIN}
+    #- VIRTUAL_HOST=${KOBOCAT_PUBLIC_ADDR},${KOBOFORM_PUBLIC_ADDR}
