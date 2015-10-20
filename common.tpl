@@ -35,7 +35,6 @@ mongo:
   volumes:
     - "${VOL_DB}/mongo:/srv/db"
 
-
 kobocat:
   image: teodorescuserban/kobo-kobocat:latest # still WIP
   #build: ./kobocat
@@ -77,7 +76,7 @@ web:
   hostname: nginx
   env_file:
     - ./env_common
-    - ./env_kobos
+    - ./env_nginx
   #  - ./env_secrets
   ports:
     - "${KOBO_WB_SERVER_IP}:${NGINX_HTTP_PORT}:80"
