@@ -2,7 +2,7 @@
 
 1. edit set_vars to suit your needs. Really look at them.
 
-2. run bash prepare.sh (inspect, change and save if needed, exit)
+2. run bash prepare.sh (inspect, change and save if needed, exit); please note you will at least have to add the SSL key and the enketo api token.
 
 3. docker-compose up -d
 
@@ -21,5 +21,3 @@
     bash sync_static.sh
 
     bash create_demo_user.sh -> ONLY FOR DEV / DEMO INSTALLS.
-
-
