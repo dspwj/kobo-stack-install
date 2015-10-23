@@ -12,8 +12,8 @@ $e KOBO_WB_SERVER_IP=${KOBO_SERVER_IP}
 $e KOBO_DB_SERVER_IP=${KOBO_SERVER_IP}
 $e KOBO_PREFIX=
 $e KOBO_DOMAIN=humanitarianresponse.info
-$e KOBO_SSL_KEY=
-$e KOBO_SSL_CRT=
+$e KOBO_SSL_KEY=""
+$e KOBO_SSL_CRT=""
 
 $e IMAGES_PREFIX=teodorescuserban/kobo
 $e BASE_DIR=/srv
