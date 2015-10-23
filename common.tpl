@@ -86,9 +86,3 @@ web:
   extra_hosts:
     - "${KOBOFORM_PUBLIC_ADDR}: ${KOBO_WB_SERVER_IP}"
     - "${KOBOCAT_PUBLIC_ADDR}: ${KOBO_WB_SERVER_IP}"
-  environment:
-    - KOBO_NGINX_BASE_DIR=/etc/nginx
-    - KOBO_NGINX_LOG_DIR=/var/log/nginx
-    - KOBO_SSL_KEY=${KOBO_SSL_KEY}
-    # for BM staging :)
-    #- VIRTUAL_HOST=${KOBOCAT_PUBLIC_ADDR},${KOBOFORM_PUBLIC_ADDR}
