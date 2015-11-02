@@ -14,6 +14,8 @@ $e KOBO_PREFIX=
 $e KOBO_DOMAIN=humanitarianresponse.info
 $e KOBO_SSL_KEY=""
 $e KOBO_SSL_CRT=""
+$e TRACKJS_TOKEN=''
+$e GOOGLE_ANALYTICS_TOKEN=''
 
 $e IMAGES_PREFIX=teodorescuserban/kobo
 $e BASE_DIR=/srv
