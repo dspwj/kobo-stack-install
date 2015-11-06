@@ -7,7 +7,9 @@ e="export"
 
 $e KOBO_TERM=xterm
 
+# Dynamically retrieve the IP address of the `docker0` bridge network interface.
 DOCKER0_IP="$(ifconfig | grep -A 1 'docker0' | tail -1 | cut -d ':' -f 2 | cut -d ' ' -f 1)"
+
 $e KOBO_SERVER_IP=$DOCKER0_IP
 $e KOBO_WB_SERVER_IP=${KOBO_SERVER_IP}
 $e KOBO_DB_SERVER_IP=${KOBO_SERVER_IP}
