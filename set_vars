@@ -134,7 +134,7 @@ $e DATABASE_URL=postgis://${KOBO_PSQL_DB_USER}:${KOBO_PSQL_DB_PASS}@${PSQL_HOST}
 #$e CSRF_COOKIE_DOMAIN=".local.kobotoolbox.org"
 $e CSRF_COOKIE_DOMAIN=.${KOBO_DOMAIN}
 $e DJANGO_SECRET_KEY=sooooooooooooosecreeeeeeeeeeeeeet
-$e DJANGO_ALLOWED_HOSTS="${KOBO_DOMAIN} ${KOBO_DOMAIN}."
+$e DJANGO_ALLOWED_HOSTS=".${KOBO_DOMAIN} .${KOBO_DOMAIN}."
 
 ###########################################################
 
