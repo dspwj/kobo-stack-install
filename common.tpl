@@ -51,7 +51,7 @@ kobocat:
     - "mongo: ${MONGO_HOST}"
     - "rabbit: ${RABBIT_HOST}"
   volumes:
-    - "${VOL_WB}/kobocat:/srv/static"
+    - "${VOL_WB}/static/kobocat:/srv/static"
 
 dkobo:
   image: teodorescuserban/kobo-dkobo:latest # still WIP
@@ -69,7 +69,7 @@ dkobo:
     - "${KOBOFORM_PUBLIC_ADDR}: ${KOBO_WB_SERVER_IP}"
     - "${KOBOCAT_PUBLIC_ADDR}: ${KOBO_WB_SERVER_IP}"
   volumes:
-    - "${VOL_WB}/koboform:/srv/static"
+    - "${VOL_WB}/static/koboform:/srv/static"
 
 web:
   image: teodorescuserban/kobo-nginx:latest # still WIP
@@ -82,7 +82,9 @@ web:
     - "${KOBO_WB_SERVER_IP}:${NGINX_HTTP_PORT}:80"
     - "${KOBO_WB_SERVER_IP}:${NGINX_HTTPS_PORT}:443"
   volumes:
-    - "${VOL_WB}:/srv/www:ro"
+      - "${VOL_WB}/static:/srv/www:ro"
+      # get the logs out of glusterfs!
+      - "${VOL_WB}/../log/nginx:/var/log/nginx"
   extra_hosts:
     - "${KOBOFORM_PUBLIC_ADDR}: ${KOBO_WB_SERVER_IP}"
     - "${KOBOCAT_PUBLIC_ADDR}: ${KOBO_WB_SERVER_IP}"

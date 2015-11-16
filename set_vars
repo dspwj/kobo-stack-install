@@ -95,6 +95,7 @@ fi
 $e KOBOCAT_SERVER_PORT=8001
 $e KOBOCAT_DJANGO_DEBUG=True
 $e KOBOCAT_DJANGO_SETTINGS_MODULE="onadata.settings.kc_environ"
+$e KOBOCAT_RAVEN_DSN=
 
 # -------------- KoBoForm --------------
 # auth redir
@@ -125,6 +126,7 @@ $e KOBOFORM_DJANGO_DEBUG=True
 $e KOBOFORM_DJANGO_LIVE_RELOAD=False
 $e KOBOFORM_DJANGO_SITE_ID=1
 $e KOBOFORM_DJANGO_SETTINGS_MODULE="dkobo.settings"
+$e KOBOFORM_RAVEN_DSN=
 
 # -------------- Common ----------------
 $e DATABASE_URL=postgis://${KOBO_PSQL_DB_USER}:${KOBO_PSQL_DB_PASS}@${PSQL_HOST}:${PSQL_PORT}/${KOBO_PSQL_DB_NAME}
