@@ -10,14 +10,18 @@
 
 5. docker exec into kobocat and do:
 
-    bash init.sh  -> ONLY ON NEW INSTALLS!
+    bash /srv/init.sh
 
-    bash sync_static.sh
+    bash /srv/sync_static.sh
 
 5. docker exec into dkobo and do:
 
-    bash init.sh -> ONLY ON NEW INSTALLS!
+    bash /srv/init.sh
 
-    bash sync_static.sh
+    bash /srv/sync_static.sh
 
-    bash create_demo_user.sh -> ONLY FOR DEV / DEMO INSTALLS.
+    bash /srv/create_demo_user.sh -> ONLY FOR DEV / DEMO INSTALLS.
+
+6. docker exec into mongo and do:
+
+    bash /srv/add_index.sh # <- this will add a missing index to mongo db that will greatly improve speed
