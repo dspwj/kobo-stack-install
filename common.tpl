@@ -2,6 +2,7 @@
 
 rabbit:
   image: teodorescuserban/kobo-rabbit:latest
+  # build: ../kobo-dockers/rabbit
   hostname: rabbit
   env_file:
     - ./env_common
@@ -14,6 +15,7 @@ rabbit:
 
 psql:
   image: teodorescuserban/kobo-psql:latest
+  # build: ../kobo-dockers/psql
   hostname: psql
   env_file:
     - ./env_common
@@ -25,6 +27,7 @@ psql:
 
 mongo:
   image: teodorescuserban/kobo-mongo:latest
+  # build: ../kobo-dockers/mongo
   hostname: mongo
   env_file:
     - ./env_common
@@ -37,7 +40,7 @@ mongo:
 
 kobocat:
   image: teodorescuserban/kobo-kobocat:latest # still WIP
-  #build: ./kobocat
+  # build: ../kobo-dockers/kobocat
   hostname: kobocat
   env_file:
     - ./env_common
@@ -55,7 +58,7 @@ kobocat:
 
 dkobo:
   image: teodorescuserban/kobo-dkobo:latest # still WIP
-  #build: ../kobo-dockers/dkobo
+  # build: ../kobo-dockers/dkobo
   hostname: dkobo
   env_file:
     - ./env_common
@@ -63,7 +66,7 @@ dkobo:
     - ./env_kobos
     - ./env_dkobo
   ports:
-    - "${KOBOCAT_SERVER_ADDR}:${KOBOFORM_SERVER_PORT}:8000"
+    - "${KOBOFORM_SERVER_ADDR}:${KOBOFORM_SERVER_PORT}:8000"
   extra_hosts:
     - "db: ${PSQL_HOST}"
     - "${KOBOFORM_PUBLIC_ADDR}: ${KOBO_WB_SERVER_IP}"
@@ -71,8 +74,20 @@ dkobo:
   volumes:
     - "${VOL_WB}/static/koboform:/srv/static"
 
+kpi:
+  image: kobotoolbox/kpi:latest
+  hostname: kpi
+  env_file:
+    - ./env_common
+    - ./env_sql
+    - ./env_kobos
+    - ./env_kpi
+  ports:
+  - "${KPI_SERVER_ADDR}:${KPI_SERVER_PORT}:8000"
+
 web:
   image: teodorescuserban/kobo-nginx:latest # still WIP
+  # build: ../kobo-dockers/nginx
   hostname: nginx
   env_file:
     - ./env_common

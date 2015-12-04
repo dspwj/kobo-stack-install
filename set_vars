@@ -31,11 +31,17 @@ $e VOL_WB=./.vols
 # -------------- KoBoCAT ---------------
 $e KOBOCAT_PUBLIC_ADDR=${KOBO_PREFIX}kc.${KOBO_DOMAIN}
 $e KOBOCAT_SERVER_ADDR=${KOBO_WB_SERVER_IP}
+$e KOBOCAT_SERVER_PORT=8000
 
 # -------------- KoBoForm --------------
 $e KOBOFORM_PUBLIC_ADDR=${KOBO_PREFIX}kobo.${KOBO_DOMAIN}
 $e KOBOFORM_SERVER_ADDR=${KOBO_WB_SERVER_IP}
 $e KOBOFORM_SERVER_PORT=8000
+
+# -------------- KPI -------------------
+$e KPI_PUBLIC_ADDR=${KOBO_PREFIX}kobo.${KOBO_DOMAIN}
+$e KPI_SERVER_ADDR=${KOBO_WB_SERVER_IP}
+$e KPI_SERVER_PORT=8000
 
 # -------------- Postgres --------------
 $e PSQL_HOST=${KOBO_DB_SERVER_IP}
@@ -88,11 +94,9 @@ $e ENKETO_API_TOKEN='enketorules'
 if [ $ENKETO_VERSION == 'express' ]; then
     $e ENKETO_API_ROOT='/api/v2'
     $e ENKETO_OFFLINE_SURVEYS='True'
-    $e ENKETO_API_ENDPOINT_PREVIEW='/preview'
 else
     $e ENKETO_API_ROOT='/api_v1'
     $e ENKETO_OFFLINE_SURVEYS='False'
-    $e ENKETO_API_ENDPOINT_PREVIEW='/webform/preview'
 fi
 # Prepended settings.
 $e KOBOCAT_SERVER_PORT=8001
@@ -104,8 +108,6 @@ $e KOBOCAT_RAVEN_DSN=
 # auth redir
 $e KOBOFORM_PREVIEW_SERVER=http://${KOBOFORM_PUBLIC_ADDR}
 # menu->projects
-$e KOBOCAT_URL=http://${KOBOCAT_PUBLIC_ADDR}
-$e KOBOCAT_INTERNAL_URL=http://${KOBOCAT_PUBLIC_ADDR}
 $e COMPRESS_ENABLED=True
 $e COMPRESS_OFFLINE=True
 $e DEFAULT_KOBO_USER=kobo
@@ -113,23 +115,27 @@ $e DEFAULT_KOBO_PASS=kobo
 # Email related settings: comment them out on prod envs
 $e EMAIL_BACKEND='django.core.mail.backends.filebased.EmailBackend'
 $e EMAIL_FILE_PATH=${SRC_DIR}/emails
-# Email related settings: current production
-#$e EMAIL_BACKEND='django_ses.SESBackend'
-#$e DEFAULT_FROM_EMAIL='kobocat@kobotoolbox.org'
-#$e SERVER_EMAIL=DEFAULT_FROM_EMAIL
-#$e AWS_SES_ACCESS_KEY_ID='THISISNOTAREALKEY'
-#$e AWS_SES_SECRET_ACCESS_KEY='THISISNOTAREALKEY'
-#$e AWS_SES_REGION_NAME='some-region-name'
-#$e AWS_SES_REGION_ENDPOINT='some-region-endpoint'
 
-$e ENKETO_SERVER=${ENKETO_URL}
-$e ENKETO_PREVIEW_URI=${ENKETO_API_ENDPOINT_PREVIEW}
 # Prepended settings.
 $e KOBOFORM_DJANGO_DEBUG=True
 $e KOBOFORM_DJANGO_LIVE_RELOAD=False
 $e KOBOFORM_DJANGO_SITE_ID=1
 $e KOBOFORM_DJANGO_SETTINGS_MODULE="dkobo.settings"
 $e KOBOFORM_RAVEN_DSN=
+
+
+# -------------- KPI-only -------------------
+export KPI_URI_PREFIX=/forms
+export KOBO_USE_MINIFIED_SCRIPTS=False
+export DKOBO_PREFIX=False
+export KOBO_SURVEY_PREVIEW_EXPIRATION=24
+
+# Prepended settings.
+export KPI_LIVERELOAD_SCRIPT=False
+export KPI_BROKER_URL=amqp://guest:guest@${RABBIT_HOST}:${RABBIT_PORT}/
+export KPI_DJANGO_DEBUG=False
+export KPI_RAVEN_DSN=
+export KPI_DJANGO_LIVE_RELOAD=False
 
 # -------------- Common ----------------
 $e DATABASE_URL=postgis://${KOBO_PSQL_DB_USER}:${KOBO_PSQL_DB_PASS}@${PSQL_HOST}:${PSQL_PORT}/${KOBO_PSQL_DB_NAME}
@@ -138,6 +144,21 @@ $e DATABASE_URL=postgis://${KOBO_PSQL_DB_USER}:${KOBO_PSQL_DB_PASS}@${PSQL_HOST}
 $e CSRF_COOKIE_DOMAIN=.${KOBO_DOMAIN}
 $e DJANGO_SECRET_KEY=sooooooooooooosecreeeeeeeeeeeeeet
 $e DJANGO_ALLOWED_HOSTS=".${KOBO_DOMAIN} .${KOBO_DOMAIN}."
+if [ $ENKETO_VERSION == 'express' ]; then
+    $e ENKETO_API_ENDPOINT_PREVIEW='/preview'
+else
+    $e ENKETO_API_ENDPOINT_PREVIEW='/webform/preview'
+fi
+$e ENKETO_SERVER=${ENKETO_SERVER_ADDR}
+$e ENKETO_PREVIEW_URI=${ENKETO_API_ENDPOINT_PREVIEW}
+$e KOBOCAT_URL=http://${KOBOCAT_PUBLIC_ADDR}
+$e KOBOCAT_INTERNAL_URL=http://${KOBOCAT_PUBLIC_ADDR}
+#$e EMAIL_BACKEND='django_ses.SESBackend'
+#$e DEFAULT_FROM_EMAIL='kobocat@kobotoolbox.org'
+#$e AWS_SES_ACCESS_KEY_ID='THISISNOTAREALKEY'
+#$e AWS_SES_SECRET_ACCESS_KEY='THISISNOTAREALKEY'
+#$e AWS_SES_REGION_NAME='some-region-name'
+#$e AWS_SES_REGION_ENDPOINT='some-region-endpoint'
 
 ###########################################################
 
