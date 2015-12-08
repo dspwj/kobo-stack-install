@@ -83,7 +83,15 @@ kpi:
     - ./env_kobos
     - ./env_kpi
   ports:
-  - "${KPI_SERVER_ADDR}:${KPI_SERVER_PORT}:8000"
+    - "${KPI_SERVER_ADDR}:${KPI_SERVER_PORT}:8000"
+  extra_hosts:
+    - "db: ${PSQL_HOST}"
+    - "${KOBOFORM_PUBLIC_ADDR}: ${KOBO_WB_SERVER_IP}"
+    - "${KOBOCAT_PUBLIC_ADDR}: ${KOBO_WB_SERVER_IP}"
+  volumes:
+    - "${VOL_WB}/static/kpi:/srv/static"
+    # The Whoosh search index needs persistent storage
+    - "${VOL_DB}/whoosh:/srv/whoosh"
 
 web:
   image: teodorescuserban/kobo-nginx:latest # still WIP
