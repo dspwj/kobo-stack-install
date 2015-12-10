@@ -25,6 +25,11 @@ kobocat:
     file: common.yml
     service: kobocat
 
+kpi:
+  extends:
+    file: common.yml
+    service: kpi
+
 web:
   extends:
     file: common.yml
