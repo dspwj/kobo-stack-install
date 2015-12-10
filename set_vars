@@ -101,7 +101,7 @@ else
 fi
 # Prepended settings.
 $e KOBOCAT_SERVER_PORT=8001
-$e KOBOCAT_DJANGO_DEBUG=True
+$e KOBOCAT_DJANGO_DEBUG=False
 $e KOBOCAT_DJANGO_SETTINGS_MODULE="onadata.settings.kc_environ"
 $e KOBOCAT_RAVEN_DSN=
 
@@ -118,7 +118,7 @@ $e EMAIL_BACKEND='django.core.mail.backends.filebased.EmailBackend'
 $e EMAIL_FILE_PATH=${SRC_DIR}/emails
 
 # Prepended settings.
-$e KOBOFORM_DJANGO_DEBUG=True
+$e KOBOFORM_DJANGO_DEBUG=False
 $e KOBOFORM_DJANGO_LIVE_RELOAD=False
 $e KOBOFORM_DJANGO_SITE_ID=1
 $e KOBOFORM_DJANGO_SETTINGS_MODULE="dkobo.settings"
@@ -135,7 +135,7 @@ export KOBO_SURVEY_PREVIEW_EXPIRATION=24
 $e KPI_SERVER_PORT=8002
 export KPI_LIVERELOAD_SCRIPT=False
 export KPI_BROKER_URL=amqp://kpi:kpi@${RABBIT_HOST}:${RABBIT_PORT}/kpi
-export KPI_DJANGO_DEBUG=True
+export KPI_DJANGO_DEBUG=False
 export KPI_RAVEN_DSN=
 export KPI_DJANGO_LIVE_RELOAD=False
 
