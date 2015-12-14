@@ -127,7 +127,7 @@ $e KOBOFORM_RAVEN_DSN=
 # -------------- KPI-only -------------------
 $e KPI_PREFIX=/forms
 $e KOBO_USE_MINIFIED_SCRIPTS=False
-$e DKOBO_PREFIX=False
+$e DKOBO_PREFIX=/
 $e KOBO_SURVEY_PREVIEW_EXPIRATION=24
 
 # Prepended settings.
