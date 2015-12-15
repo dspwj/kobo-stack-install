@@ -106,7 +106,7 @@ $e KOBOCAT_RAVEN_DSN=
 
 # -------------- KoBoForm --------------
 # auth redir
-$e KOBOFORM_PREVIEW_SERVER=http://${KOBOFORM_PUBLIC_ADDR}
+$e KOBOFORM_PREVIEW_SERVER=https://${KOBOFORM_PUBLIC_ADDR}
 # menu->projects
 $e COMPRESS_ENABLED=True
 $e COMPRESS_OFFLINE=True
