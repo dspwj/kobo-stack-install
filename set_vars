@@ -106,7 +106,7 @@ $e KOBOCAT_RAVEN_DSN=
 
 # -------------- KoBoForm --------------
 # auth redir
-$e KOBOFORM_PREVIEW_SERVER=http://${KOBOFORM_PUBLIC_ADDR}
+$e KOBOFORM_PREVIEW_SERVER=https://${KOBOFORM_PUBLIC_ADDR}
 # menu->projects
 $e COMPRESS_ENABLED=True
 $e COMPRESS_OFFLINE=True
@@ -123,11 +123,13 @@ $e KOBOFORM_DJANGO_SITE_ID=1
 $e KOBOFORM_DJANGO_SETTINGS_MODULE="dkobo.settings"
 $e KOBOFORM_RAVEN_DSN=
 
+# Used by both dkobo and KPI
+$e KPI_PREFIX=/forms
+$e DKOBO_PREFIX=/
+
 
 # -------------- KPI-only -------------------
-$e KPI_PREFIX=/forms
 $e KOBO_USE_MINIFIED_SCRIPTS=False
-$e DKOBO_PREFIX=/
 $e KOBO_SURVEY_PREVIEW_EXPIRATION=24
 
 # Prepended settings.
