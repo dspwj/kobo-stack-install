@@ -1,4 +1,3 @@
-# copyleft 2015 teodorescu.serban@gmail.com
 
 # =======
 KOBOFORM_PREVIEW_SERVER=${KOBOFORM_PREVIEW_SERVER}

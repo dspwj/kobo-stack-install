@@ -1,4 +1,4 @@
-# copyleft 2015 teodorescu.serban@gmail.com
+# Quick guide
 
 1. edit set_vars to suit your needs. Really look at them.
 

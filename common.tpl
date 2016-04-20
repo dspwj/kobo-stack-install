@@ -1,4 +1,3 @@
-# copyleft 2015 teodorescu.serban@gmail.com
 
 rabbit:
   image: teodorescuserban/kobo-rabbit:latest

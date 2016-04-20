@@ -1,4 +1,3 @@
-# copyleft 2015 teodorescu.serban@gmail.com
 PSQL_ADMIN=${PSQL_ADMIN}
 KOBO_PSQL_DB_NAME=${KOBO_PSQL_DB_NAME}
 KOBO_PSQL_DB_USER=${KOBO_PSQL_DB_USER}

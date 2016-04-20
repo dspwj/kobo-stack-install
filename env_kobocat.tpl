@@ -1,4 +1,3 @@
-# copyleft 2015 teodorescu.serban@gmail.com
 
 KOBOFORM_URL=${KOBOFORM_URL}
 KOBOFORM_SERVER=${KOBOFORM_SERVER_ADDR}

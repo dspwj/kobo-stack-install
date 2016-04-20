@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# copyleft 2015 teodorescu.serban@gmail.com
-
 if [ -z $EDITOR ]; then
   which mcedit > /dev/null
   if [ $? -eq 0 ]; then
