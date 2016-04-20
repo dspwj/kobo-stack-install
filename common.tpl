@@ -90,7 +90,8 @@ kpi:
   volumes:
     - "${VOL_WB}/static/kpi:/srv/static"
     # The Whoosh search index needs persistent storage
-    - "${VOL_DB}/whoosh:/srv/whoosh"
+    # ...but keep it away from glusterfs!
+    - "${VOL_WB}/../whoosh:/srv/whoosh"
 
 web:
   image: teodorescuserban/kobo-nginx:latest # still WIP
