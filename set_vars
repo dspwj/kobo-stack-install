@@ -72,14 +72,14 @@ $e KOBO_PSQL_DB_PASS=kobo
 
 # -------------- KoBoCAT ---------------
 # auth redir
-$e KOBOFORM_URL=http://${KOBOFORM_PUBLIC_ADDR}
+$e KOBOFORM_URL=https://${KOBOFORM_PUBLIC_ADDR}
 $e KOBOCAT_MONGO_HOST=mongo
 $e KOBOCAT_MONGO_PORT=${MONGO_PORT}
 $e KOBOCAT_MONGO_NAME=formhub
 $e KOBOCAT_MONGO_USER=''
 $e KOBOCAT_MONGO_PASS=''
 $e KOBOCAT_BROKER_URL=amqp://guest:guest@${RABBIT_HOST}:${RABBIT_PORT}/
-$e KOBOCAT_MEDIA_URL=http://${KOBOCAT_PUBLIC_ADDR}/media/
+$e KOBOCAT_MEDIA_URL=https://${KOBOCAT_PUBLIC_ADDR}/media/
 
 #$e AWS_S3_ACCESS_KEY_ID='not-a-real-key'
 #$e AWS_S3_SECRET_ACCESS_KEY='not-a-real-key'
@@ -88,7 +88,8 @@ $e KOBOCAT_MEDIA_URL=http://${KOBOCAT_PUBLIC_ADDR}/media/
 
 # this is the protocol enketo will try to use to reach our server!
 # use http on bm staging, https otherwise
-$e ENKETO_PROTOCOL="http"
+$e ENKETO_PROTOCOL="http" # intentionally left unchanged pending further
+                          # investigation --jnm 20160623
 $e ENKETO_API_TOKEN='enketorules'
 
 # Prepended settings.
@@ -141,8 +142,8 @@ $e DATABASE_URL=postgis://${KOBO_PSQL_DB_USER}:${KOBO_PSQL_DB_PASS}@${PSQL_HOST}
 $e CSRF_COOKIE_DOMAIN=.${KOBO_DOMAIN}
 $e DJANGO_SECRET_KEY=sooooooooooooosecreeeeeeeeeeeeeet
 $e DJANGO_ALLOWED_HOSTS=".${KOBO_DOMAIN} .${KOBO_DOMAIN}."
-$e KOBOCAT_URL=http://${KOBOCAT_PUBLIC_ADDR}
-$e KOBOCAT_INTERNAL_URL=http://${KOBOCAT_PUBLIC_ADDR}
+$e KOBOCAT_URL=https://${KOBOCAT_PUBLIC_ADDR}
+$e KOBOCAT_INTERNAL_URL=https://${KOBOCAT_PUBLIC_ADDR}
 #$e EMAIL_BACKEND='django_ses.SESBackend'
 #$e DEFAULT_FROM_EMAIL='kobocat@kobotoolbox.org'
 #$e AWS_SES_ACCESS_KEY_ID='THISISNOTAREALKEY'
