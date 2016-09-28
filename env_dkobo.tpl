@@ -20,6 +20,7 @@ ENKETO_VERSION=${ENKETO_VERSION}
 # KOBOFORM_BROKER_URL=${KOBOFORM_BROKER_URL}  # Will eventually want to connect Celery to the new KoBoForm.
 DKOBO_PREFIX=${DKOBO_PREFIX}
 KPI_PREFIX=${KPI_PREFIX}
+RAVEN_SERVER_NAME=${KOBOFORM_PUBLIC_ADDR}__dkobo
 
 # =======
 # Remove "KOBOFORM_" prefix from variables.
