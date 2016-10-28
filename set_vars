@@ -124,6 +124,7 @@ $e DKOBO_PREFIX=/
 # -------------- KPI-only -------------------
 $e KOBO_USE_MINIFIED_SCRIPTS=False
 $e KOBO_SURVEY_PREVIEW_EXPIRATION=24
+$e SKIP_HEAVY_MIGRATIONS=True
 
 # Prepended settings.
 $e KPI_LIVERELOAD_SCRIPT=False
@@ -133,7 +134,7 @@ $e KPI_RAVEN_DSN=
 $e KPI_DJANGO_LIVE_RELOAD=False
 # More language codes will be included as more translations achieve sufficient
 # quality
-$e KPI_DJANGO_LANGUAGE_CODES="en fr ar"
+$e KPI_DJANGO_LANGUAGE_CODES="en fr ar es"
 
 # -------------- Common ----------------
 $e DATABASE_URL=postgis://${KOBO_PSQL_DB_USER}:${KOBO_PSQL_DB_PASS}@${PSQL_HOST}:${PSQL_PORT}/${KOBO_PSQL_DB_NAME}
